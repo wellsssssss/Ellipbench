@@ -70,6 +70,7 @@ with torch.no_grad():
 # 计算测试集上的损失和准确率
 test_loss = test_loss / len(test_dataset)
 test_accuracy = correct / len(test_dataset)
+torch.save(model.state_dict(), 'model_parameters.pth')
 # 绘制训练集损失下降曲线
 plt.plot(range(1, num_epochs+1), train_losses, label='Train Loss')
 plt.xlabel('Epoch')
