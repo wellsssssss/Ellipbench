@@ -1,6 +1,5 @@
 import pandas as pd
 from torch.utils.data import DataLoader, TensorDataset
-from torch.utils.data import DataLoader
 import torch
 from sklearn.model_selection import train_test_split
 import numpy as np
@@ -10,7 +9,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Script to set batch size.')
 
 # 添加一个命令行参数
-parser.add_argument('--batch_size', type=int, default=4096, help='Batch size for data loaders')
+parser.add_argument('--batch_size', type=int, default=512, help='Batch size for data loaders')
 parser.add_argument('--epoch', type=int, default=1000, help='epoch')
 parser.add_argument('--lr', type=float, default=0.01, help='epoch')
 # 解析命令行参数
@@ -42,9 +41,8 @@ targets=torch.tensor(targets,requires_grad=True)
 # targets=targets.float()
 # 划分训练集和剩余数据
 X_train, X_remaining, y_train, y_remaining = train_test_split(inputs, targets, test_size=0.3, random_state=42)
-
 # 划分验证集和测试集
-X_val, X_test, y_val, y_test = train_test_split(X_remaining, y_remaining, test_size=0.2, random_state=42)
+X_val, X_test, y_val, y_test = train_test_split(X_remaining, y_remaining, test_size=0.33, random_state=42)
 # 将数据封装成TensorDataset
 # 将数据封装成TensorDataset
 train_dataset = TensorDataset(X_train, y_train)
