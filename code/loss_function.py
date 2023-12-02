@@ -88,12 +88,9 @@ def loss_1(y_predict,y_true,x_true,csv_data):
     return loss
 
 def acc(predicted_vectors, true_vectors):
-
     predicted_vectors = np.array(predicted_vectors)
     true_vectors = np.array(true_vectors)
-
     cosine_similarities = np.sum(predicted_vectors * true_vectors, axis=1) / (np.linalg.norm(predicted_vectors, axis=1) * np.linalg.norm(true_vectors, axis=1))
-    print(cosine_similarities)
     # 计算准确率的平均值
     accuracy = np.mean(cosine_similarities)
     return accuracy
