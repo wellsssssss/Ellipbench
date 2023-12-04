@@ -7,7 +7,6 @@ from loss_function import loss_1,acc
 import matplotlib.pyplot as plt
 model = Net(input_size,hidden_size,output_size)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# device = torch.device('cpu')
 model.to(device)
 optimizer = optim.SGD(model.parameters(), lr=learning_rate)  # 定义优化器
 criterion = nn.MSELoss()
@@ -77,6 +76,7 @@ plt.xlabel('Epoch')
 plt.ylabel('Loss')
 plt.title('Training Loss')
 plt.legend()
+plt.savefig('train_mse_loss.png')
 plt.show()
 # 绘制验证集准确率变化曲线
 plt.plot(range(1, num_epochs+1), val_accuracies, label='Validation Accuracy')
@@ -84,5 +84,6 @@ plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.title('Validation Accuracy')
 plt.legend()
+plt.savefig('train_mse_acc.png')
 plt.show()
 print(f"Test Loss: {test_loss:.4f}, Test Accuracy: {test_accuracy:.4f}")
