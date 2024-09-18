@@ -7,21 +7,16 @@ import argparse
 import torch.nn.functional as F
 # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 device=torch.device('cuda')
-# def normalize_tensor(tensor):
-#     mean = tensor.mean(dim=0, keepdim=True)
-#     std = tensor.std(dim=0, keepdim=True)
-#     return (tensor - mean) / std
-# 创建一个ArgumentParser对象
+
 parser = argparse.ArgumentParser(description='Script to set batch size.')
 
-# 添加一个命令行参数
+
 parser.add_argument('--batch_size', type=int, default=128, help='Batch size for data loaders')
 parser.add_argument('--epoch', type=int, default=50, help='epoch')
 parser.add_argument('--lr', type=float, default=0.00001, help='epoch')
-# 解析命令行参数
 args = parser.parse_args()
 
-# 将命令行参数赋值给batch_size变量
+
 batch_size = args.batch_size
 epoch=args.epoch
 learning_rate=args.lr
@@ -29,7 +24,7 @@ learning_rate=args.lr
 data = pd.read_csv('train.csv').values.astype(np.float32)
 data = torch.tensor(data)
 
-# 假设data是一个PyTorch张量
+
 inputs = torch.stack([data[:, i] for i in [1,2,3,4,5,6,7]], dim=1)
 
 inputs.requires_grad_()
